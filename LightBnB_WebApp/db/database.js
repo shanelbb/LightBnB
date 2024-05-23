@@ -7,15 +7,8 @@ const pool = new Pool({
   database: "lightbnb",
 });
 
-// pool.query(`SELECT title FROM properties LIMIT 10;`).then((response) => {
-//   console.log(response);
-// });
-
-const properties = require("./json/properties.json");
-const users = require("./json/users.json");
 
 /// Users
-
 const getUserWithEmail = function(email) {
   const query = `
     SELECT *
@@ -83,7 +76,6 @@ const addUser = function(user) {
 };
 
 /// Reservations
-
 const getAllReservations = function(guest_id, limit = 10) {
   const query = `
         SELECT 
@@ -120,7 +112,6 @@ const getAllReservations = function(guest_id, limit = 10) {
 };
 
 /// Properties
-
 const getAllProperties = function(options, limit = 10) {
   const queryParams = [];
   const min = options.minimum_price_per_night;
@@ -181,7 +172,7 @@ const getAllProperties = function(options, limit = 10) {
 };
 
 
-const addProperty = function (property) {
+const addProperty = function(property) {
   const query = `
         INSERT INTO properties 
         (owner_id, title, description, thumbnail_photo_url, cover_photo_url, cost_per_night,
