@@ -163,11 +163,12 @@ const getAllProperties = function(options, limit = 10) {
     queryString += ` HAVING avg(property_reviews.rating) >= $${queryParams.length}`;
   }
 
+  queryParams.push(limit);
+
   queryString += `
         ORDER BY cost_per_night
-        LIMIT $${queryParams.length + 1};`;
+        LIMIT $${queryParams.length};`;
 
-  queryParams.push(limit);
 
   return pool
     .query(queryString, queryParams)
